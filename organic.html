@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty Products</title>
+    <link rel="stylesheet" href="BPP.css">
+    <script defer src="BPP.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styles */
+.header {
+    background-color: #74d26e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.logo a {
+    text-decoration: none;
+    font-size: 24px;
+    color: #333333;
+}
+
+.logo span {
+    color: #e510b0;
+}
+
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar ul li {
+    display: inline;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #333333;
+    font-size: 16px;
+    font: bold;
+}
+
+.navbar ul li a:hover {
+    color: #f30909;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.autocomplete {
+    position: relative;
+}
+
+.search-bar {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #ccc;
+    border-top: none;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+}
+
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.autocomplete-items div:hover {
+    background-color: #f1f1f1;
+}
+
+.icons a {
+    color: #333333;
+    font-size: 20px;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+.icons a:hover {
+    color: #f50a0a;
+}
+
+/* Sign In Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 5px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #333333;
+}
+
+.modal-content form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modal-content form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #e91e63;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.modal-content form button:hover {
+    background-color: #d81b60;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .header-right {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Organic Ingredients Section */
+.organic-ingredients {
+    background-color: #72ca9f;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.organic-ingredients h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #333333;
+}
+
+.ingredients-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.ingredient {
+    background-color: #4cb876;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 20px;
+    width: calc(25% - 20px);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.ingredient img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.ingredient:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.ingredient h3,
+.ingredient p {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+}
+
+.ingredient h3 {
+    top: 20px;
+    font-size: 20px;
+    margin: 0;
+    color: #d823c6;
+}
+
+.ingredient p {
+    top: 50%;
+    font-size: 16px;
+    margin: 0;
+    color: #050505;
+}
+
+.add-to-bag {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 20px);
+    padding: 10px;
+    background-color: #e91e63;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-bag:hover {
+    background-color: #d81b60;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .ingredient {
+        width: calc(33.333% - 20px);
+    }
+}
+
+@media (max-width: 992px) {
+    .ingredient {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .ingredient {
+        width: calc(100% - 20px);
+    }
+}
+
+@media (max-width: 576px) {
+    .organic-ingredients h2 {
+        font-size: 28px;
+    }
+
+    .ingredient h3 {
+        font-size: 18px;
+    }
+
+    .ingredient p {
+        font-size: 14px;
+    }
+}
+
+/* Cruelty-Free Products Section */
+.cruelty-free-products {
+    background-color: #ade9cb;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.cruelty-free-products h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #000000;
+}
+
+.products-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.product {
+    background-color: #76d7a9;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 20px;
+    width: calc(25% - 20px);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.product:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product h3 {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    margin: 0;
+    color: #fdfbfc;
+}
+
+.product p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    margin: 0;
+    color: #e929bf;
+}
+
+.add-to-bag {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 20px);
+    padding: 10px;
+    background-color: #e91e63;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-bag:hover {
+    background-color: #d81b60;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .product {
+        width: calc(33.333% - 20px);
+    }
+}
+
+@media (max-width: 992px) {
+    .product {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .product {
+        width: calc(100% - 20px);
+    }
+}
+
+@media (max-width: 576px) {
+    .cruelty-free-products h2 {
+        font-size: 28px;
+    }
+
+    .product h3 {
+        font-size: 18px;
+    }
+
+    .product p {
+        font-size: 14px;
+    }
+}
+/* Sustainable Packaging Products Section */
+.sustainable-packaging-products {
+    background-color: #d4edda;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.sustainable-packaging-products h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #030303;
+}
+
+.products-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.product {
+    background-color: #a3e4d7;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 20px;
+    width: calc(25% - 20px);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.product img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.product:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product h3 {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    margin: 0;
+    color: #ffffff;
+}
+
+.product p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    margin: 0;
+    color: #050505;
+}
+
+.add-to-bag {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 20px);
+    padding: 10px;
+    background-color: #e91e63;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-bag:hover {
+    background-color: #d81b60;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .product {
+        width: calc(33.333% - 20px);
+    }
+}
+
+@media (max-width: 992px) {
+    .product {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .product {
+        width: calc(100% - 20px);
+    }
+}
+
+@media (max-width: 576px) {
+    .sustainable-packaging-products h2 {
+        font-size: 28px;
+    }
+
+    .product h3 {
+        font-size: 18px;
+    }
+
+    .product p {
+        font-size: 14px;
+    }
+}
+/*custome satisfaction */
+
+.customer-satisfaction {
+    background-color: #cd8651;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.customer-satisfaction h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.reviews-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.review {
+    background-color: #ce9393;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    width: calc(33.333% - 20px);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.profile-flip {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+    position: relative;
+    perspective: 1000px;
+}
+
+.front, .back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: transform 0.6s;
+    border-radius: 50%;
+}
+
+.front {
+    background-color: #fff;
+    border: 2px solid #e0e0e0;
+}
+
+.front img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.back {
+    background-color: yellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotateY(180deg);
+}
+
+.review:hover .front {
+    transform: rotateY(180deg);
+}
+
+.review:hover .back {
+    transform: rotateY(0deg);
+}
+
+.comment {
+    margin-top: 10px;
+}
+
+.comment p {
+    font-size: 16px;
+    color: #040404;
+}
+
+.comment h4 {
+    font-size: 18px;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .review {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 768px) {
+    .review {
+        width: calc(100% - 20px);
+    }
+}
+
+@media (max-width: 576px) {
+    .customer-satisfaction h2 {
+        font-size: 28px;
+    }
+
+    .comment p {
+        font-size: 14px;
+    }
+
+    .comment h4 {
+        font-size: 16px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">Beauty<span>Brand</span></a>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#org">Organic Products</a></li>
+                    <li><a href="#cru">Cruelty-Free </a></li>
+                    <li><a href="#sust">Sustainable Packaging  </a></li>
+                
+                    <li><a href="#cust">Customer Satisfaction </a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <div class="autocomplete">
+                    <input id="searchBar" type="text" class="search-bar" placeholder="Search...">
+                
+                    <button id="searchButton"><i class="fas fa-search"></i></button>
+                    <div id="autocompleteResults" class="autocomplete-items"></div>
+                </div>
+                <div class="icons">
+                    <a href="#" id="userIcon"><i class="fas fa-user"></i></a>
+                    <a href="#"><i class="fas fa-heart"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sign In Modal -->
+    <div id="signInModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeSignIn">&times;</span>
+            <h2>Sign In</h2>
+            <form>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+    </div>
+    <br>
+
+    <section class="organic-ingredients" id="org">
+        <div class="container">
+            <h2>Our Organic Ingredients</h2>
+            <div class="ingredients-grid">
+                <div class="ingredient">
+                    <img src="alo1.avif" alt="Aloe Vera">
+                    <h3>Aloe Vera</h3>
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+                    
+                </div>
+                <div class="ingredient" >
+                    <img src="coc1.avif" alt="Coconut Oil">
+                    <h3>Coconut Oil</h3>
+                
+                    
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+                </div>
+                <div class="ingredient" >
+                    <img src="butter.avif" alt="Shea Butter">
+                    <h3>Shea Butter</h3>
+                    
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+                    
+                </div>
+                <div class="ingredient">
+                    <img src="green.avif" alt="Green Tea">
+                    <br>
+                    <h3>Green Tea</h3>
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+                    
+                </div>
+                <div class="ingredient">
+                    <img src="oil.avif" alt="Jojoba Oil">
+                    <h3>Jojoba Oil</h3>
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+                    
+                </div>
+                <div class="ingredient">
+                    <img src="lu1.avif" alt="Lavender">
+                    <h3>Lavender</h3>
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+                
+                </div>
+                <div class="ingredient">
+                    <img src="rose.avif" alt="Rosehip Oil">
+                    <h3>Rosehip Oil</h3>
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+            
+                </div>
+                <div class="ingredient">
+                    <img src="chamo.avif" alt="Chamomile">
+                    <h3>Chamomile</h3>
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+<br>
+    <section class="cruelty-free-products" id="cru" >
+        <div class="container">
+            <h2>Our Cruelty-Free Products</h2>
+            <div class="products-grid">
+                <div class="product">
+                    <img src="vign.jpg" alt="Vegan Lipstick">
+                    <h3>Vegan Lipstick</h3>
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+                
+                </div>
+                <div class="product">
+                    <img src="nafun.avif" alt="Natural Foundation">
+                    <h3>Natural Foundation</h3>
+
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+                    
+                </div>
+                <div class="product">
+                    <img src="plantmm.avif" alt="Plant-Based Mascara">
+                    <h3>Plant-Based Mascara</h3>
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+                    
+                </div>
+                <div class="product">
+                    <img src="eyeorganic.jpg" alt="Organic Eyeliner">
+                    <h3>Organic Eyeliner</h3>
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+                    
+                </div>
+                <div class="product">
+                    <img src="har bhlus.avif" alt="Herbal Blush">
+                    <h3>Herbal Blush</h3>
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+                
+                </div>
+                <div class="product">
+                    <img src="eco4.avif" alt="Eco-Friendly Eyeshadow">
+                    <h3>Eco-Friendly Eyeshadow</h3>
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+            
+                </div>
+                <div class="product">
+                    <img src="ecofriendly ser.avif" alt="Botanical Serum">
+                    <h3>Botanical Serum</h3>
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+                    
+                </div>
+                <div class="product">
+                    <img src="sunseen3.avif" alt="Mineral Sunscreen">
+                    <h3>Mineral Sunscreen</h3>
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+<br>
+<section class="sustainable-packaging-products" id="sust">
+        <div class="container">
+            <h2>Our Sustainable Packaging Products</h2>
+            <div class="products-grid">
+                <div class="product">
+                    <img src="balm111.avif" alt="Recycled Lipstick Packaging">
+                    <h3>Recycled Lipstick Packaging</h3>
+                    <button class="add-to-bag" onclick="window.location.href='indexhtml'">Add to Bag</button>
+                </div>
+                <div class="product">
+                    <img src="balm3.avif" alt="Bamboo Foundation Container">
+                    <h3>Bamboo Foundation Container</h3>
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+                </div>
+                <div class="product">
+                    <img src="balm4.avif" alt="Glass Mascara Tube">
+                    <h3>Glass Mascara Tube</h3>
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+                </div>
+                <div class="product">
+                    <img src="balm44.avif" alt="Aluminum Eyeliner Pencil">
+                    <h3>Aluminum Eyeliner Pencil</h3>
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+                </div>
+                <div class="product">
+                    <img src="balm1.avif" alt="Compostable Blush Packaging">
+                    <h3>Compostable Blush Packaging</h3>
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+                </div>
+                <div class="product">
+                    <img src="balm777.jpg" alt="Eco-Friendly Eyeshadow Case">
+                    <h3>Eco-Friendly Eyeshadow Case</h3>
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+                </div>
+                <div class="product">
+                    <img src="balm8.avif" alt="Refillable Serum Bottle">
+                    <h3>Refillable Serum Bottle</h3>
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+                </div>
+                <div class="product">
+                    <img src="balm9.avif" alt="Biodegradable Sunscreen Tube">
+                    <h3>Biodegradable Sunscreen Tube</h3>
+                    <button class="add-to-bag" onclick="window.location.href='index.html'">Add to Bag</button>
+                </div>
+            </div>
+        </div>
+    </section>
+<br>
+    <section class="customer-satisfaction" id="cust">
+        <div class="container">
+            <h2>Customer Satisfaction</h2>
+            <div class="reviews-grid">
+                <div class="review">
+                    <div class="profile-flip">
+                        <div class="front">
+                            <img src="sat1.avif" alt="Customer 1">
+                        </div>
+                        <div class="back">
+                            <p>★★★★☆</p>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <p>"I love these products! They have changed my skincare routine completely."</p>
+                        <h4>Mrunalini</h4>
+                    </div>
+                </div>
+                <div class="review">
+                    <div class="profile-flip">
+                        <div class="front">
+                            <img src="sat3.avif" alt="Customer 2">
+                        </div>
+                        <div class="back">
+                            <p>★★★★★</p>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <p>"The quality is unmatched. Highly recommended!"</p>
+                        <h4>Krishna</h4>
+                    </div>
+                </div>
+                <div class="review">
+                    <div class="profile-flip">
+                        <div class="front">
+                            <img src="sat2.avif" alt="Customer 3">
+                        </div>
+                        <div class="back">
+                            <p>★★★★☆</p>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <p>"Great value for money. Will definitely purchase again."</p>
+                        <h4>Siri</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+
+    <script src="BPP.js"></script>
+</body>
+</html>

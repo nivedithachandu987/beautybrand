@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty Products</title>
+    <link rel="stylesheet" href="BPP.css">
+    <script defer src="BPP.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d2e3f1;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            color: #333;
+        }  
+
+        .products-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-around;
+        }
+
+        .product {
+            background-color: #d4edf5;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            width: calc(25% - 20px);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .product h3 {
+            font-size: 20px;
+            margin: 15px 0;
+            color: #333;
+        }
+
+        .product p {
+            font-size: 18px;
+            color: #e91e63;
+            margin-bottom: 15px;
+        }
+
+        .product .btn {
+            background-color: #e91e63;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .product .btn:hover {
+            background-color: #d81b60;
+        }
+
+        .product .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff5252;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .product:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 1200px) {
+            .product {
+                width: calc(33.333% - 20px);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .product {
+                width: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .product {
+                width: calc(50% - 20px);
+            }
+
+            .header h1 {
+                font-size: 28px;
+            }
+
+            .product h3 {
+                font-size: 18px;
+            }
+
+            .product p {
+                font-size: 16px;
+            }
+
+            .product .btn {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .product {
+                width: calc(100% - 20px);
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .product h3 {
+                font-size: 16px;
+            }
+
+            .product p {
+                font-size: 14px;
+            }
+
+            .product .btn {
+                font-size: 12px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">Beauty<span>Brand</span></a>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#why">Why Us</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <div class="autocomplete">
+                    <input id="searchBar" type="text" class="search-bar" placeholder="Search...">
+                    
+                    <button id="searchButton"><i class="fas fa-search"></i></button>
+                    <div id="autocompleteResults" class="autocomplete-items"></div>
+                </div>
+                <div class="icons">
+                    <a href="#" id="userIcon"><i class="fas fa-user"></i></a>
+                    <a href="#"><i class="fas fa-heart"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sign In Modal -->
+    <div id="signInModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeSignIn">&times;</span>
+            <h2>Sign In</h2>
+            <form>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+    </div>
+   
+
+    
+        <section class="featured-products" id="products"></section>
+        </div>
+        <div class="products-grid">
+            <br>
+            <div class="product">
+                <div class="discount-badge">50% OFF</div>
+                <img src="applying-red-lipstick-lips-close-up-photo-black-background-beauty-make-up_482257-10395.avif" alt="Product 1">
+                <h3>Red lipstick</h3>
+                <p>$29.99</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+            
+            </div>
+            <div class="product">
+                <div class="discount-badge">50% OFF</div>
+                <img src="cosmetic-item-with-marijuana-leaves_23-2151336398.avif" alt="Product 2">
+                <h3>Lipstick </h3>
+                <p>$39.99</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+        
+            </div>
+            <div class="product">
+                <div class="discount-badge">50% OFF</div>
+                <img src="cosmetic-parts-face-beauty_144627-9453.avif" alt="Product 3">
+                <h3>  Lipstick shades</h3>
+                <p>$49.99</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+        
+            </div>
+            <div class="product">
+                <div class="discount-badge">50% OFF</div>
+                <img src="high-angle-make-up-products_23-2149030335.avif" alt="Product 4">
+                <h3> Nude lipsticks</h3>
+                <p>$59.99</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+            
+            </div>
+            <div class="product">
+                <div class="discount-badge">50% OFF</div>
+                <img src="top-view-foundation-containers-still-life_23-2149511269.avif" alt="Product 5">
+                <h3>Product 5</h3>
+                <p>$69.99</p> 
+                <a href="index.html" class="btn">Add to Bag</a>
+            
+            </div>
+            <div class="product">
+                <div class="discount-badge">50% OFF</div>
+                <img src="foundation-product-branding-still-life_23-2149665136 (1).avif" alt="Product 6">
+                <h3>Product 6</h3>
+                <p>$79.99</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+                
+            </div>
+            <div class="product">
+                <div class="discount-badge">50% OFF</div>
+                <img src="top-view-foundation-containers-arrangement_23-2149705554 (1).avif" alt="Product 7">
+                <h3>Product 7</h3>
+                <p>$89.99</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+                
+            </div>
+            <div class="product">
+                <div class="discount-badge">50% OFF</div>
+                <img src="arrangement-with-foundation-bottle-plant_23-2149030339.avif" alt="Product 8">
+                <h3>Product 8</h3>
+                <p>$99.99</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+            </div>
+          
+            <div class="product">
+                <div class="discount-badge">50% OFF</div>
+                <img src="still-life-combination-makeup-textures_23-2150240955.avif" alt="Product 5">
+                <h3>Product 5</h3>
+                <p>$69.99</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+            
+            </div>
+            <div class="product">
+                <div class="discount-badge">50% OFF</div>
+                <img src="viewsh.avif" alt="Product 6">
+                <h3>Product 6</h3>
+                <p>$79.99</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+        
+            </div>
+            <div class="product">
+                <div class="discount-badge">50% OFF</div>
+                <img src="view-eyeshadow-palette-with-brush-applicator_23-2150260891.avif" alt="Product 7">
+                <h3>Product 7</h3>
+                <p>$89.99</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+                 
+            </div>
+            <div class="product">
+                <div class="discount-badge">50% OFF</div>
+                <img src="still-life-combination-makeup-textures_23-2150240959.avif" alt="Product 8">
+                <h3>Product 8</h3>
+                <p>$99.99</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+                
+            </div>
+          
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+</section>
+    <script src="BPP.js"></script>
+</body>
+</html>

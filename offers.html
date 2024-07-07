@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty Products</title>
+    <link rel="stylesheet" href="BPP.css">
+    <script defer src="BPP.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+          
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styles */
+.header {
+    background-color: #e89356;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.logo a {
+    text-decoration: none;
+    font-size: 24px;
+    color: #333333;
+}
+
+.logo span {
+    color: #e510b0;
+}
+
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+.navbar ul li {
+    display: inline;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #333333;
+    font-size: 16px;
+    font: bold;
+}
+
+.navbar ul li a:hover {
+    color: #f30909;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.autocomplete {
+    position: relative;
+}
+
+.search-bar {
+    padding: 5px 10px;
+    border: 1px solid #f0c59c;
+    border-radius: 5px;
+}
+
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #ccc;
+    border-top: none;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #ffffff;
+}
+
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.autocomplete-items div:hover {
+    background-color: #f1f1f1;
+}
+
+.icons a {
+    color: #333333;
+    font-size: 20px;
+    margin-left: 15px;
+    text-decoration: none;
+}
+
+.icons a:hover {
+    color: #f50a0a;
+}
+
+/* Sign In Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #e88787;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 5px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #333333;
+}
+
+.modal-content form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modal-content form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #e91e63;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.modal-content form button:hover {
+    background-color: #d81b60;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .header-right {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+
+/* Zoom Card Styles */
+
+.special-offers{
+    background-color: #efab7b;
+}
+.offer {
+    background-color: rgb(237, 142, 101);
+    
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    padding: 20px;
+    width: calc(33.33% - 20px);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.offer img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.offer h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #000000;
+}
+
+.offer p {
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+.offer .btn {
+    background-color: #e91e63;
+    color: #eec6a8;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.offer .btn:hover {
+    background-color: #d81b60;
+}
+
+.offer:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+    
+
+.special-offers {
+    background-color: #f79f6f;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.special-offers h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #333333;
+}
+
+.offer-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.offer {
+    background-color: #e69c6a;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 20px;
+    width: calc(33.33% - 20px);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.offer img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.offer h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333333;
+}
+
+.offer p {
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+.offer .btn {
+    background-color: #e91e63;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.offer .btn:hover {
+    background-color: #d81b60;
+}
+
+.offer:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .navbar ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .header-right {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .offer {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .offer {
+        width: 100%;
+    }
+}
+
+.special-offers h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #333333;
+}
+
+.offer-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.offer {
+    background-color: #deb48b;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    padding: 20px;
+    width: calc(33.33% - 20px);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.offer img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.offer h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333333;
+}
+
+.offer p {
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+.offer .btn {
+    background-color: #e91e63;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.offer .btn:hover {
+    background-color: #d81b60;
+}
+
+.offer:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .navbar ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .header-right {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .offer {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .offer {
+        width: 100%;
+    }
+}
+
+    </style>
+    <body>
+
+        <header class="header">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">Beauty<span>Brand</span></a>
+                </div>
+                <nav class="navbar">
+                    <ul>
+                        <li><a href="#hair">Hair Products</a></li>
+                        <li><a href="#body">Body Products</a></li>
+                        <li><a href="#cosm">  Cosmetics </a></li>
+                        <li><a href="#face">Facials</a></li>
+                        <li><a href="#perf"> Perfumes</a></li>
+                        <li><a href="#polish">Polishs </a></li>
+                    </ul>
+                </nav>
+                <div class="header-right">
+                    <div class="autocomplete">
+                        <input id="searchBar" type="text" class="search-bar" placeholder="Search...">
+                        
+                    <button id="searchButton"><i class="fas fa-search"></i></button>
+                    <div id="autocompleteResults" class="autocomplete-items"></div>
+                    
+
+                    </div>
+                    <div class="icons">
+                        <a href="#" id="userIcon"><i class="fas fa-user"></i></a>
+                        <a href="#"><i class="fas fa-heart"></i></a>
+                        <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <!-- Sign In Modal -->
+        <div id="signInModal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeSignIn">&times;</span>
+                <h2>Sign In</h2>
+                <form>
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <button type="submit">Sign In</button>
+                </form>
+            </div>
+        </div>
+
+ <!-- Special Offers Section -->
+ <section class="special-offers" id="hair">
+    <div class="container">
+        <h2>Special Offers</h2>
+        <div class="offer-grid">
+            <div class="offer">
+                <img src="straigh.avif" alt="Offer 1">
+                <h3>Hair straightener</h3>
+                <p>Get 20% off on all hair products. Limited time offer!</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+            </div>
+            <div class="offer">
+                <img src="drying-hair_1098-18002.avif" alt="Offer 2">
+                <h3>Hair Dryer</h3>
+                <p>Buy 1, Get 1 Free on selected makeup items. Hurry!</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+            </div>
+            <div class="offer">
+                <img src="hair spray.avif" alt="Offer 3">
+                <h3>Hair Spray</h3>
+                <p>Free shipping on orders over $50. Limited time only!</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="special-offers" id="body">
+    <div class="container">
+        <h2>Special Offers</h2>
+        <div class="offer-grid">
+            <div class="offer">
+                <img src="bodyscrub.avif" alt="Body Products">
+                <h3>Body Scrub</h3>
+                <p>Free shipping on orders over $50. Limited time only!</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+            </div>
+            <div class="offer">
+                <img src="body wash1.avif" alt="Hair Products">
+                <h3>Body Wash</h3>
+                <p>Get 20% off on all Body products. Limited time offer!</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+            </div>
+            <div class="offer">
+                <img src="body shop.avif" alt="Skincare Products">
+                <h3>Body soap</h3>
+                <p>Buy one, get one free on selected skincare products.</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+            </div>
+        </div>
+    </div>
+    
+
+<!-- Special Offers Section -->
+<section class="special-offers" id="cosm">
+    <div class="container">
+        <h2>Special Offers</h2>
+        <div class="offer-grid">
+            <div class="offer">
+                <img src="cosmetics 1.avif" alt="Offer 1">
+                <h3>Cosmetics</h3>
+                <p>Get 20% off on all Cosmetics . Limited time offer!</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+            </div>
+            <div class="offer">
+                <img src="cosmetics 2.avif" alt="Offer 2">
+                <h3> Liquid cosmetic</h3>
+                <p>Buy 1, Get 1 Free on selected makeup items. Hurry!</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+            </div>
+
+            <div class="offer">
+                <img src="cosmetics 3.avif" alt="Offer 3">
+                <h3>Makeover Cosmetics</h3>
+                <p>Free shipping on orders over $50. Limited time only!</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="special-offers" id="face">
+    <div class="container">
+        <h2>Special Offers</h2>
+        <div class="offer-grid">
+            <div class="offer">
+                <img src="massssss.avif" alt="Offer 1">
+                <h3>Cua Shas </h3>
+                <p>Get 20% off on all Cua Sha products. Limited time offer!</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+            </div>
+            <div class="offer">
+                <img src="masss.avif" alt="Offer 2"> 
+                <h3>Body Massager</h3>
+                <p>Buy 1, Get 1 Free on selected  items. Hurry!</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+            </div>
+            <div class="offer">
+                <img src="mass4.avif" alt="Offer 3">
+                <h3>Menstrual cups</h3>
+                <p>Free shipping on orders over $50. Limited time only!</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="special-offers" id="perf">
+    <div class="container">
+        <h2>Special Offers</h2>
+        <div class="offer-grid">
+            <div class="offer">
+                <img src="per1.avif" alt="Body Products">
+                <h3>Body perfumes</h3>
+                <p>Free shipping on orders over $50. Limited time only!</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+            </div>
+            <div class="offer">
+                <img src="per3.avif" alt="Hair Products">
+                <h3>Magical Perfume </h3>
+                <p>Get 20% off on all Body products. Limited time offer!</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+            </div>
+            <div class="offer">
+                <img src="per2.avif" alt="Skincare Products">
+                <h3> Rose Perfume</h3>
+                <p>Buy one, get one free on selected skincare products.</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+            </div>
+        </div>
+    </div>
+    
+
+<!-- Special Offers Section -->
+<section class="special-offers" id="polish">
+    <div class="container">
+        <h2>Special Offers</h2>
+        <div class="offer-grid">
+            <div class="offer">
+                <img src="nail1.avif" alt="Offer 1">
+                <h3>Nali Polish</h3>
+                <p>Get 20% off on all shades . Limited time offer!</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+            </div>
+            <div class="offer">
+                <img src="nail 2.avif" alt="Offer 2">
+                <h3>Shade polish</h3>
+                <p>Buy 1, Get 1 Free on selected polishs items. Hurry!</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+            </div>
+
+            <div class="offer">
+                <img src="nail 3.avif" alt="Offer 3">
+                <h3>Polish</h3>
+                <p>Free shipping on orders over $50. Limited time only!</p>
+                <a href="index.html" class="btn">Add to Bag</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+   
+        <script src="BPP.js"></script>
+    </body>
+    </html>
+    
+
+
