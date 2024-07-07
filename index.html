@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty Products</title>
+    <link rel="stylesheet" href="BPP.css">
+    <script defer src="BPP.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html">Beauty<span>Brand</span></a>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#why">Why Us</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <div class="autocomplete search-bar-container">
+                    <input id="searchBar" type="text" class="search-bar" placeholder="Search...">
+                    <button id="searchButton"><i class="fas fa-search"></i></button>
+                    <div id="autocompleteResults" class="autocomplete-items"></div>
+                </div>
+                <div class="icons">
+                    <a href="#" id="userIcon"><i class="fas fa-user"></i></a>
+                    <a href="#"><i class="fas fa-heart"></i></a>
+                    <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+ 
+    <!-- Sign In Modal -->
+    <div id="signInModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeSignIn">&times;</span>
+            <h2>Sign In</h2>
+            <form>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+    </div>
+    
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>FOR EVERY YOU</h1>
+                
+                <p>Enjoy $500 off on your first order with brand500</p>
+                
+                <a href="shop now.html" class="btn">Shop Now</a>
+                <br>
+                <br>
+                
+    
+                
+                
+
+               
+            </div> 
+        </div>
+    </section>
+
+
+
+
+    <br>
+    <section class="featured-products" id="products">
+        <div class="container">
+            <h2>Featured Products</h2>
+            <div class="products-grid">
+                <div class="product">
+                    <img src="lipsticks-arrangement-with-dark-background_23-2148978137.avif" alt="Product 1">
+                    <h3>Lipsticks</h3>
+                    <p>$39.99</p>
+                    
+                    <a href="lipstick.html" class="btn">Quick View</a>
+                    
+                </div>
+                <div class="product">
+                    <img src="top-view-fundation-packaging_52683-94661.avif" alt="fundation">
+                    <h3> Fundation </h3>
+                    <p>$39.99</p>
+                    <a href="lipstick.html" class="btn">Quick View</a>
+                </div>
+                <div class="product">
+
+    <img src="front-view-mascara-eyelashes-golden-tube-with-makeup-brush_140725-13869 (1).avif" alt="mascara">
+                    <h3>Mascara</h3>
+                    <p>$49.99</p>
+                    <a href="lipstick.html" class="btn">Quick View</a>
+                </div>
+                <div class="product">
+                    <img src="still-life-combination-makeup-textures_23-2150240959.avif" alt="blush">
+                    <h3>Blush</h3>
+                    
+                    <p>$59.99</p>
+                    <a href="lipstick.html" class="btn">Quick View</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<br>
+<section class="benefits" id="why">
+    <div class="container">
+        <h2>Why Choose Us?<br><span>All Products <br>(only $59.99)</span></h2>
+        <div class="benefits-grid">
+            <div class="benefit" onclick="navigateToPage('organic.html')">
+                <img src="products1.avif" alt="Organic Ingredients">
+                <i class="fas fa-leaf"></i>
+                <h3>Organic Ingredients</h3>
+                <p>Our products are made with the finest organic ingredients.</p>
+                <br>
+                <h4>$59.99</h4>
+                <a href="organic.html" class="btn">View it</a>
+            </div>
+            <div class="benefit" onclick="navigateToPage('cruelty-free.html')">
+                <img src="cur1.avif" alt="Cruelty-Free">
+                <i class="fas fa-paw"></i>
+                <h3>Cruelty-Free</h3>
+                <p>We never test on animals, ensuring cruelty-free beauty.</p>
+                <br><br>
+                <h4>$59.99</h4>
+                
+                <a href="organic.html" class="btn">View it</a>
+            </div>
+            <div class="benefit" onclick="navigateToPage('sustainable-packaging.html')">
+                <img src="pack.avif" alt="Sustainable Packaging">
+                <i class="fas fa-recycle"></i>
+                <h3>Sustainable Packaging</h3>
+                <p>Our packaging is eco-friendly and sustainable.</p>
+                <br> <br>
+                <h4>$59.99</h4>
+                <a href="organic.html" class="btn">View it</a>
+            </div>
+            <div class="benefit" onclick="navigateToPage('customer-satisfaction.html')">
+                <img src="custom.avif" alt="Customer Satisfaction">
+                <i class="fas fa-smile-beam"></i>
+                <h3>Customer Satisfaction</h3>
+                <p>We prioritize customer satisfaction with every purchase.</p>
+                <br>
+                <h4>$59.99</h4>
+                <a href="organic.html" class="btn">View it</a>
+            </div>
+        </div>
+    </div>
+</section>
+<br>
+    <section class="special-offers" id="categories">
+        <div class="container">
+            <h2>Special Offers</h2>
+            <div class="offer-grid">
+                <div class="offer">
+                    <img src="hair products1.avif" alt="Offer 1">
+                    <h3>Hair products</h3>
+                    <p>Get 20% off on all Hair products. Limited time offer!</p>
+                    <a href="offers.html" class="btn">Shop Now</a>
+                </div>
+                <div class="offer">
+                    <img src="body products.avif" alt="Offer 2">
+                    <h3> Body products</h3>
+                    <p>Free shipping on orders over $50. Limited time only!</p>
+        
+                    <a href="offers.html" class="btn">Shop Now</a>
+                </div>
+
+                <div class="offer">
+                    <img src="face1.avif" alt="Offer 3">
+                    <h3>Cua Sha</h3>
+                    <p>Buy 1, Get 1 Free on selected facial items. Hurry!</p>
+                    
+                    <a href="offers.html" class="btn">Shop Now</a>
+                </div>
+
+                <div class="offer">
+                    <img src="pur2.avif" alt="Offer 3">
+                    <h3>perfumes</h3>
+                    <p>Buy 1, Get 1 Free on selected Fragrance items. Hurry!</p>
+                    
+                    <a href="offers.html" class="btn">Shop Now</a>
+                </div>
+
+                <div class="offer">
+                    <img src="cos1.avif" alt="Offer 5">
+                    <h3>Cosmetics</h3>
+                    <p>Exclusive gift with every purchase over $75.</p>
+                    <a href="offers.html" class="btn">Shop Now</a>
+                </div>
+
+                <div class="offer">
+                    <img src="polish.avif" alt="Offer 6">
+                    <h3>Polishs</h3>
+                    <p>30% off on new arrivals. Don't miss out!</p>
+                    <a href="offers.html" class="btn">Shop Now</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    
+    <br>
+
+
+    <section class="blog-section" id="blog">
+        <div class="container">
+            <h2></h2>
+            <div class="arrow arrow-left">&#8249;</div>
+            <div class="blog-slider">
+                <div class="blog-item">
+                    <video src="blog5.mp4" controls></video>
+                    
+                    <p>Your monsoon haircare routine</p>
+                </div>
+                <div class="blog-item">
+                    <video src="blog20.mp4" controls></video>
+        
+                    <p>Layering your hair style: A step-by-step guide</p>
+                </div>
+                <div class="blog-item">
+                    <video src="blog4.mp4" controls></video>
+                    <p>On the radar: Sunset Blush</p>
+                </div>
+                <div class="blog-item">
+                    <video src="blog16.mp4" controls></video>
+                    <p>Full-glam vs. Fresh face: Dramatic makeup tips</p>
+                </div>
+                <div class="blog-item">
+                    <video src="blog8.mp4" controls></video>
+                    <p>Natural glow with minimal makeup</p>
+                </div>
+                <div class="blog-item">
+                    <video src="blog7.mp4" controls></video>
+                    <p>Winter skincare essentials</p>
+                </div>
+                <div class="blog-item">
+                    <video src="blog6.mp4" controls></video>
+                    <p>Summer makeup trends</p>
+                </div>
+                <div class="blog-item">
+                    <video src="blog12.mp4" controls></video>
+                    <p>Evening skincare routine</p>
+                </div>
+                <div class="blog-item">
+                    <video src="blog14.mp4" controls></video>
+                    <p>Quick morning makeup</p>
+                </div>
+                <div class="blog-item">
+                    <video src="blog13.mp4" controls></video>
+                    <p>Top beauty hacks</p>
+                </div>
+            </div>
+            <div class="arrow arrow-right">&#8250;</div>
+        </div>
+    </section>
+    
+<!-- About Us Section -->
+<section class="about-us" id="about">
+    <div class="container">
+        <div class="about-content">
+            <h1>About Us</h1>
+            <p>Welcome to our beauty products website. We are dedicated to providing the best quality products to enhance your beauty and boost your confidence. Our team is passionate about bringing you the latest trends and innovative products in the beauty industry.</p>
+           
+            <p>Thank you for choosing our brand. We look forward to helping you achieve your beauty goals and providing you with an exceptional shopping experience.</p>
+
+            <a href="index.html" class="btn">Thank You</a>
+        </div>
+    </div>
+</section>
+
+<br>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-social">
+                    <h2>Follow Us</h2>
+                    <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <br><br>
+                    <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <br><br>
+                    <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <br><br>
+                    <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <br><br>
+                    <a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="footer-links">
+                    <h2>Quick Links</h2>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#why">Why Us</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+
+<br><br><br> <br>
+
+                    </ul>
+                </div>
+                
+                
+                <div class="footer-support">
+                    <h2>Supported By</h2>
+                    
+                    <p>
+                        BeautyWorks, Nature's Best, EcoGlam, PureBeauty, GreenLeaf, GlowUp, FreshFaces, Zenith Cosmetics, VivaNaturals,  GlowNaturally, NaturalRadiance, GreenGlamour, PureGrace.
+                    </p>
+
+
+                </div>
+
+            </div>
+        
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 BeautyBrand. All rights reserved.</p>
+            </div>
+            <br><br>
+        </div>
+    </footer>
+
+
+   
+        
+    <script src="BPP.js"></script>
+</body>
+</html>
+
+
